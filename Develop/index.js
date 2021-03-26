@@ -151,7 +151,7 @@ const projectQuestions = () =>{
             type: 'input',
             name: 'creditsInput',
             message:'Please give credit to your collaborators or any outside sources.',
-            when: creditsConfirm =>{
+            when: ({ creditsConfirm }) =>{
                 if(creditsConfirm){
                     return true
                 } else {
@@ -176,6 +176,13 @@ const projectQuestions = () =>{
             name: 'badgeCheckbox',
             message: 'Which badges would you like to include?',
             choices: ['GitHub Language Count', 'GitHub Top Language', 'GitHub Issues Counter', 'GitHub Closed Issues', 'GitHub Pull Requests', 'License Type', 'GitHub Last Commit Date'],
+            when: ({ badgeConfirm }) =>{
+                if(badgeConfirm){
+                    return true
+                } else {
+                    return false
+                }
+            }
         },
         {
             type: 'confirm',
@@ -187,7 +194,7 @@ const projectQuestions = () =>{
             type: 'input',
             name: 'featureInput',
             message: 'Please list the features of your app.',
-            when: featuresConfirm =>{
+            when: ({ featuresConfirm }) =>{
                 if (featuresConfirm){
                     return true
                 } else {
@@ -205,7 +212,7 @@ const projectQuestions = () =>{
             type: 'input',
             name: 'testingInput',
             message: 'Please describe the methodologies used to test your app.',
-            when: testingConfirm =>{
+            when: ({ testingConfirm }) =>{
                 if(testingConfirm){
                     return true
                 } else{
@@ -223,7 +230,7 @@ const projectQuestions = () =>{
             type: 'input',
             name: 'contactInput',
             message: 'Please enter any additional contact information you would like.',
-            when: contactConfirm =>{
+            when: ({ contactConfirm }) =>{
                 if (contactConfirm){
                     return true
                 } else {
@@ -258,3 +265,4 @@ function init() {}
 
 // Function call to initialize app
 init();
+userQuestions().then(projectQuestions)
