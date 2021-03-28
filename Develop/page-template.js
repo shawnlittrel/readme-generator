@@ -1,15 +1,14 @@
 //Destructure Array into variables
 
 function generateReadMe(arr){
-    console.log(arr.data.badgeCheckbox.join(', '))
     const { name, github, email } = arr
     const { projectTitle, projectDescription, githubLink, installInput, usageInput, creditsInput, featureInput, testingInput } = arr.data[0];
-    const badges = arr.data[0].badgeCheckbox.join(', ');
+    const badges = arr.data[0].badgeCheckbox;
     const  licenseType = arr.data[0].licenseCheckbox;
 
     return `
         ${generateTitle(projectTitle)}
-        ${badgeIdentifier(badges)}
+        ${badgeIdentifier(badges, github, projectTitle)}
         {generateTOC(contents)}
         ${generateDescription(projectDescription)}
         ${generateInstall(installInput)}
@@ -29,14 +28,14 @@ function generateTitle(title){
     `;  
 };
 
-function badgeIdentifier(arr){
-    let githubLC = ''
-    let githubTL = ''
-    let githubIC = ''
-    let githubCI = ''
-    let githubPR = ''
-    let githubLCD = ''
-    const badges = arr.data.badgeCheckbox;
+function badgeIdentifier(arr, github, projectTitle){
+    let githubLC = '';
+    let githubTL = '';
+    let githubIC = '';
+    let githubCI = '';
+    let githubPR = '';
+    let githubLCD = '';
+    const badges = arr;
 
     //Check for each available badge.  If it exists, include in section.  If not, leave an empty string.
     if (badges.includes("GitHub Language Count")){
@@ -123,16 +122,16 @@ function generateLicensing(licenseType, name){
     let licenseText = ''
     if(licenseType === 'MIT'){
         licenseText = 
-        `Copyright ${new Date.getFullYear()} ${name} Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  
+    `Copyright ${new Date().getFullYear()} ${name} Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  
         
-        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
         
-        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.`
     }  else if(licenseType === 'ISC'){
         licenseText = 
         `ISC License
 
-        Copyright ${new Date.getFullYear()}, ${name}
+        Copyright ${new Date().getFullYear()}, ${name}
         
         Permission to use, copy, modify, and/or distribute this software for any
         purpose with or without fee is hereby granted, provided that the above
@@ -187,6 +186,14 @@ function generateFeatures(features){
     ${features}
     `
 };
+
+function generateTesting(testing){
+    return `
+    ##-Testing
+    ---
+    ${testing}
+    `
+}
 
 function generateContribute(contribute){
     return `
