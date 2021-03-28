@@ -1,6 +1,6 @@
 
     
-#readme-generator
+# readme-generator
 ---
     
     
@@ -14,23 +14,16 @@
 
 
     
-#Table Of Contents
+## Table Of Contents
 ---
 * [Installation](#installation)
-
--[Usage](#usage)
-
--[Credits](#credits)
-
--[Licensing](#licensing)
-
--[Features](#features)
-
--[Testing](#testing)
-
-* [Contribute](#contribute)
-
-* [Questions and Contact](#questions-and-contact)
+* [Usage](#usage)
+* [Credits](#credits)
+* [Licensing](#licensing)
+* [Features](#features)
+* [Testing](#testing)
+* [Contribute To This Project](#contribute)
+* [Questions and Contact Info](#questions-and-contact)
 
     
 ## Description
@@ -77,7 +70,7 @@ cool stuff
     
 ## Testing
 ---
-type thigns
+test lots
 
 
     
@@ -89,10 +82,10 @@ Want to contribute to this project?  Please make a pull request at www.github.co
     
 ## Questions And Contact
 ---
-dont
+don't
 
-Shawn Littrel
-GitHub: (www.github.com/shawnlittrel/readme-generator)
-Email: shawnlittrel@gmail.com
+* Shawn Littrel
+* GitHub: www.github.com/shawnlittrel/readme-generator
+* Email: shawnlittrel@gmail.com
 
     
