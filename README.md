@@ -1,8 +1,10 @@
+
+    
 # readme-generator
 ---
     
     
-![GitHub language count](https://img.shields.io/github/languages/count/shawnlittrel/readme-generator)   ![GitHub top language](https://img.shields.io/github/languages/top/shawnlittrel/readme-generator)   ![GitHub issues](https://img.shields.io/github/issues/shawnlittrel/readme-generator)   ![GitHub closed issues](https://img.shields.io/github/issues-closed/shawnlittrel/readme-generator)   ![GitHub pull requests](https://img.shields.io/github/issues-pr/shawnlittrel/readme-generator)   ![GitHub last commit](https://img.shields.io/github/last-commit/shawnlittrel/readme-generator)
+![Licensing](https://img.shields.io/github/license/shawnlittrel/readme-generator)   ![GitHub language count](https://img.shields.io/github/languages/count/shawnlittrel/readme-generator)   ![GitHub top language](https://img.shields.io/github/languages/top/shawnlittrel/readme-generator)   ![GitHub issues](https://img.shields.io/github/issues/shawnlittrel/readme-generator)   ![GitHub closed issues](https://img.shields.io/github/issues-closed/shawnlittrel/readme-generator)   ![GitHub pull requests](https://img.shields.io/github/issues-pr/shawnlittrel/readme-generator)   ![GitHub last commit](https://img.shields.io/github/last-commit/shawnlittrel/readme-generator)
 ---
 
 
@@ -33,7 +35,7 @@ clone repo, npm install
     
 ## Usage
 ---
-node index
+node index and follow prompts
 
 
     
@@ -46,33 +48,41 @@ everyone
     
 ## Licensing
 ---
-ISC License
+This is free and unencumbered software released into the public domain.
 
-        Copyright 2021, Shawn Littrel
+        Anyone is free to copy, modify, publish, use, compile, sell, or
+        distribute this software, either in source code form or as a compiled
+        binary, for any purpose, commercial or non-commercial, and by any
+        means.
         
-        Permission to use, copy, modify, and/or distribute this software for any
-        purpose with or without fee is hereby granted, provided that the above
-        copyright notice and this permission notice appear in all copies.
+        In jurisdictions that recognize copyright laws, the author or authors
+        of this software dedicate any and all copyright interest in the
+        software to the public domain. We make this dedication for the benefit
+        of the public at large and to the detriment of our heirs and
+        successors. We intend this dedication to be an overt act of
+        relinquishment in perpetuity of all present and future rights to this
+        software under copyright law.
         
-        THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
-        WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
-        MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
-        ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-        WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
-        ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
-        OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+        EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+        MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+        IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+        OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+        ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+        OTHER DEALINGS IN THE SOFTWARE.
         
+        For more information, please refer to [Unlicense.org](https://unlicense.org)
 
 
     
 ## Features
 ---
-cool stuff
+lots
 
     
 ## Testing
 ---
-test lots
+test many things
 
 
     
@@ -86,6 +96,8 @@ Want to contribute to this project?  Please make a pull request at www.github.co
 ---
 don't
 
-* Shawn Littrel
+* Author: [Shawn Littrel](www.github.com/shawnlittrel)
 * GitHub: www.github.com/shawnlittrel/readme-generator
 * Email: shawnlittrel@gmail.com
+
+    
