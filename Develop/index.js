@@ -147,10 +147,10 @@ const projectQuestions = projectData =>{
             }
         },
         {
-            type: 'checkbox',
+            type: 'list',
             name: 'licenseCheckbox',
             message: 'Which license does your app fall under?',
-            choices: ['MIT', 'ISC', 'GNU GPLv3', 'Unlicense']
+            choices: ['MIT', 'ISC', 'Unlicense']
         },
         {
             type: 'confirm',
@@ -162,7 +162,7 @@ const projectQuestions = projectData =>{
             type: 'checkbox',
             name: 'badgeCheckbox',
             message: 'Which badges would you like to include?',
-            choices: ['GitHub Language Count', 'GitHub Top Language', 'GitHub Issues Counter', 'GitHub Closed Issues', 'GitHub Pull Requests', 'License Type', 'GitHub Last Commit Date'],
+            choices: ['GitHub Language Count', 'GitHub Top Language', 'GitHub Issues Counter', 'GitHub Closed Issues', 'GitHub Pull Requests', 'GitHub Last Commit Date'],
             when: ({ badgeConfirm }) =>{
                 if(badgeConfirm){
                     return true
@@ -234,7 +234,7 @@ const projectQuestions = projectData =>{
 
 const appendFile = fileContent => {
     return new Promise((resolve, reject) => {
-        fs.writeFile('./NEWREADME.md', fileContent, err =>{
+        fs.appendFile('./NEWREADME.md', fileContent, err =>{
             //iff there's an error, reject promise and send error to catch method
             if(err){
                 reject(err);
@@ -255,8 +255,8 @@ userQuestions().then(projectQuestions)
                 .then(projectData => {
                    return template.generateReadMe(projectData);
                 })
-                .then(str =>{
-                   return appendFile(str);
+                .then(markdownText =>{
+                   return appendFile(markdownText);
                 })
                 .catch(err =>{
                     console.log(err);
