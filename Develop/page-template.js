@@ -1,29 +1,32 @@
 //Destructure Array into variables
 
 function generateReadMe(arr){
+    console.log('mock data', arr)
     const { name, github, email } = arr
-    const { projectTitle, projectDescription, githubLink, installInput, usageInput, creditsInput, featureInput, testingInput } = arr.data[0];
+    const { projectTitle, projectDescription, githubLink, installInput, usageInput, creditsConfirm, creditsInput,featuresConfirm, featureInput, testingConfirm, testingInput, contactConfirm, contactInput } = arr.data[0];
     const badges = arr.data[0].badgeCheckbox;
-    const  licenseType = arr.data[0].licenseCheckbox;
+    const licenseType = arr.data[0].licenseCheckbox;
+    const contents = arr.data[0];
+
 
     return `
         ${generateTitle(projectTitle)}
         ${badgeIdentifier(badges, github, projectTitle)}
-        {generateTOC(contents)}
+        ${generateTOC(contents)}
         ${generateDescription(projectDescription)}
         ${generateInstall(installInput)}
         ${generateUsage(usageInput)}
-        ${generateCredits(creditsInput)}
+        ${generateCredits(creditsInput, creditsConfirm)}
         ${generateLicensing(licenseType, name)}
-        ${generateFeatures(featureInput)}
-        ${generateTesting(testingInput)}
+        ${generateFeatures(featureInput, featuresConfirm)}
+        ${generateTesting(testingInput, testingConfirm)}
         ${generateContribute(githubLink)}
-        ${generateQuestions(name, githubLink, email)}
+        ${generateQuestions(name, githubLink, email, contactConfirm, contactInput)}
     `
 };
 
 function generateTitle(title){
-    return `#-${title}
+    return `#${title}
     ---
     `;  
 };
@@ -73,49 +76,83 @@ function badgeIdentifier(arr, github, projectTitle){
 return`
 ${githubLC} ${githubTL} ${githubIC} ${githubCI} ${githubPR} ${githubLCD}
 ---
+
 `
 };
 
-//function generateTOC(arr?){
-    /*
-    HEADINGS ARE #-HEADING-TEXT-HERE
-    LINK IS [Go to Real Cool Heading section](#-real-cool-heading)
-    FIGURE OUT HOW TO GENERATE BASED ON SECTIONS THAT AREN'T EMPTY STRINGS
-    */
-//}
+function generateTOC(arr, creditsConfirm, featuresConfirm, testingConfirm){
+    console.log('TOC DATA', arr)
+    if(creditsConfirm){
+        var creditsLink = '[Credits](## Credits)'
+    } else{
+        creditsLink = ''
+    };
+
+    if(featuresConfirm){
+        var featuresLink = '[Features](## Features)'
+    } else {
+        featuresLink = ''
+    };
+
+    if(testingConfirm){
+        var testingLink = '[Testing](## Testing)'
+    } else {
+        testingLink = ''
+    };
+
+    return`
+    #Table Of Contents
+    ---
+    [Installation](## Installation)
+    [Usage] (## Usage)
+    ${creditsLink}
+    [Licensing](## Licensing)
+    ${featuresLink}
+    ${testingLink}
+    $[Questions and Comments](## Questions)
+    `   
+}
 
 function generateDescription(description){
     return `
-    ##-Description
+    ## Description
     ---
     ${description}
-    ---
+    
     `
 };
 
 function generateInstall(installation){
     return `
-    ##-Installation-Instructions
+    ## Installation Instructions
     ---
     ${installation}
+
     `
 };
 
 function generateUsage(usage){
     return `
-    ##-How-To-Use
+    ## How To Use
     ---
     ${usage}
+
     `
 };
 
-function generateCredits(credits){
-    return `
-    ##-Credits
+function generateCredits(credits, creditsConfirm){
+    if(creditsConfirm){
+         return `
+    ## Credits
     ---
     Thank you to:
     ${credits}
-    `
+
+    `   
+    } else {
+        return ''
+    };
+
 };
 
 function generateLicensing(licenseType, name){
@@ -173,44 +210,66 @@ function generateLicensing(licenseType, name){
         For more information, please refer to [Unlicense.org](https://unlicense.org)`
     }
     return `
-    ##-Licensing
+    ## Licensing
     ---
     ${licenseText}
+
     `;
 };
 
-function generateFeatures(features){
+function generateFeatures(features, featuresConfirm){
+    if(featuresConfirm){
     return `
-    ##-Features
+    ## Features
     ---
     ${features}
     `
+    } else {
+        return ''
+    }
 };
 
-function generateTesting(testing){
+function generateTesting(testing, testingConfirm){
+    if(testingConfirm){
     return `
-    ##-Testing
+    ## Testing
     ---
     ${testing}
+
     `
+    } else {
+        return ''
+    }
 }
 
 function generateContribute(contribute){
     return `
-    ##-Contribute-To-This-Project
+    ## Contribute To This Project
     ---
     Want to contribute to this project?  Please make a pull request at ${contribute}
+
     `
 };
 
-function generateQuestions(name, githubLink, email){
+function generateQuestions(name, githubLink, email, contactConfirm, contactInput){
+    if(contactConfirm){
+        return `
+        ## Questions And Contact Information
+        ---
+        ${contactInput}
+        ${name}
+        GitHub: (${githubLink})
+        Email: ${email}
+        `
+    } else {
     return `
-    ##-Questions-And-Contact-Information
+    ## Questions And Contact Information
     ---
     ${name}
     GitHub: (${githubLink})
     Email: ${email}
     `
+    }
 };
 
 module.exports = {

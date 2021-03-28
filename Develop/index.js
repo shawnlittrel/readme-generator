@@ -4,6 +4,33 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const template = require('./page-template.js');
 
+const mockData =   {
+name: 'Shawn Littrel',
+github: 'shawnlittrle',
+email: 'shawnlittrel@gmail.com',
+data: [
+  {
+    projectTitle: 'Readme Generator',
+    projectDescription: 'make readmes',
+    confirmGit: true,
+    githubLink: 'shawnlittrel.github.com/readme-generator',
+    installInput: 'npm install inquirer, node index',
+    usageInput: 'uriqpweklsfjdkfl;asfd;',
+    creditsConfirm: true,
+    creditsInput: 'sources here',
+    licenseCheckbox: 'MIT',
+    badgeConfirm: true,
+    badgeCheckbox: [Array],
+    featuresConfirm: true,
+    featureInput: 'cool stuff',
+    testingConfirm: true,
+    testingInput: 'type in things until it breaks',
+    contactConfirm: true,
+    contactInput: 'Mail'
+  }
+]
+}
+
 // Ask questions about user
 const userQuestions = () =>{
     return inquirer.prompt([
@@ -251,16 +278,24 @@ const appendFile = fileContent => {
     });
 };
 
-userQuestions().then(projectQuestions)
-                .then(projectData => {
-                   return template.generateReadMe(projectData);
-                })
-                .then(markdownText =>{
-                   return appendFile(markdownText);
-                })
-                .catch(err =>{
-                    console.log(err);
-                });
+template.generateReadMe(mockData)
+        .then(markdownText =>{
+            return appendFile(markdownText)
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+
+// userQuestions().then(projectQuestions)
+//                 .then(projectData => {
+//                    return template.generateReadMe(mockData); //projectData);
+//                 })
+//                 .then(markdownText =>{
+//                    return appendFile(markdownText);
+//                 })
+//                 .catch(err =>{
+//                     console.log(err);
+//                 });
 //which sections are needed in a readme?
 //Project title - Title
 //Description of project - Description
