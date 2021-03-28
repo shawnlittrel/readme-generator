@@ -2,6 +2,7 @@
 //Which packages are needed?  Inquirer, fs, other modules written
 const inquirer = require('inquirer');
 const fs = require('fs');
+const template = require('./page-template.js');
 
 // Ask questions about user
 const userQuestions = () =>{
@@ -50,7 +51,11 @@ const userQuestions = () =>{
 };
 
 //Ask questions about project
-const projectQuestions = () =>{
+const projectQuestions = projectData =>{
+    if (!projectData.data){
+        projectData.data = [];
+    }
+
     return inquirer.prompt([
         {
             type: 'input',
@@ -96,24 +101,6 @@ const projectQuestions = () =>{
                 }
             }
             
-        },
-        {
-            type: 'confirm',
-            name: 'confirmContents',
-            message: 'Do you need a table of contents?',
-            default: true
-        },
-        {
-            type: 'input',
-            name: 'contentsInput',
-            message: 'Please input your table of contents, separated by commas.',
-            when: ({ confirmContacts }) =>{
-                if(confirmContacts){
-                    return true
-                } else {
-                    return false;
-                }
-            }
         },
         {
             type: 'input',
@@ -239,8 +226,41 @@ const projectQuestions = () =>{
             }
         }
     ])
-}
+    .then(readmeData => {
+        projectData.data.push(readmeData);
+        return projectData;
+    })
+};
 
+const appendFile = fileContent => {
+    return new Promise((resolve, reject) => {
+        fs.writeFile('./NEWREADME.md', fileContent, err =>{
+            //iff there's an error, reject promise and send error to catch method
+            if(err){
+                reject(err);
+                //return out of function to make sure the promise doesn't complete
+                return;
+            }
+
+            //if everything works, resolve the promise and send the successful data to .then
+            resolve({
+                ok: true,
+                message: 'File created.'
+            });
+        });
+    });
+};
+
+userQuestions().then(projectQuestions)
+                .then(projectData => {
+                   return template.generateReadMe(projectData);
+                })
+                .then(str =>{
+                   return appendFile(str);
+                })
+                .catch(err =>{
+                    console.log(err);
+                });
 //which sections are needed in a readme?
 //Project title - Title
 //Description of project - Description
@@ -258,11 +278,10 @@ const projectQuestions = () =>{
 //^^Need Github username and an email address
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+//function writeToFile(fileName, data) {}
 
 // TODO: Create a function to initialize app
-function init() {}
+//function init() {}
 
 // Function call to initialize app
-init();
-userQuestions().then(projectQuestions)
+//init();
