@@ -261,7 +261,7 @@ const projectQuestions = projectData =>{
 
 const appendFile = fileContent => {
     return new Promise((resolve, reject) => {
-        fs.appendFile('./NEWREADME.md', fileContent, err =>{
+        fs.writeFile('./NEWREADME.md', fileContent, err =>{
             //iff there's an error, reject promise and send error to catch method
             if(err){
                 reject(err);
@@ -278,24 +278,24 @@ const appendFile = fileContent => {
     });
 };
 
-template.generateReadMe(mockData)
-        .then(markdownText =>{
-            return appendFile(markdownText)
-        })
-        .catch(err =>{
-            console.log(err);
-        })
+// template.generateReadMe(mockData)
+//         .then(markdownText =>{
+//             return appendFile(markdownText)
+//         })
+//         .catch(err =>{
+//             console.log(err);
+//         })
 
-// userQuestions().then(projectQuestions)
-//                 .then(projectData => {
-//                    return template.generateReadMe(mockData); //projectData);
-//                 })
-//                 .then(markdownText =>{
-//                    return appendFile(markdownText);
-//                 })
-//                 .catch(err =>{
-//                     console.log(err);
-//                 });
+userQuestions().then(projectQuestions)
+                .then(projectData => {
+                   return template.generateReadMe(projectData);
+                })
+                .then(markdownText =>{
+                   return appendFile(markdownText);
+                })
+                .catch(err =>{
+                    console.log(err);
+                });
 //which sections are needed in a readme?
 //Project title - Title
 //Description of project - Description

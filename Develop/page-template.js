@@ -1,33 +1,32 @@
-//Destructure Array into variables
-
+//Generate readme procedurally based on below functions
 function generateReadMe(arr){
-    console.log('mock data', arr)
     const { name, github, email } = arr
     const { projectTitle, projectDescription, githubLink, installInput, usageInput, creditsConfirm, creditsInput,featuresConfirm, featureInput, testingConfirm, testingInput, contactConfirm, contactInput } = arr.data[0];
     const badges = arr.data[0].badgeCheckbox;
     const licenseType = arr.data[0].licenseCheckbox;
-    const contents = arr.data[0];
 
 
     return `
-        ${generateTitle(projectTitle)}
-        ${badgeIdentifier(badges, github, projectTitle)}
-        ${generateTOC(contents)}
-        ${generateDescription(projectDescription)}
-        ${generateInstall(installInput)}
-        ${generateUsage(usageInput)}
-        ${generateCredits(creditsInput, creditsConfirm)}
-        ${generateLicensing(licenseType, name)}
-        ${generateFeatures(featureInput, featuresConfirm)}
-        ${generateTesting(testingInput, testingConfirm)}
-        ${generateContribute(githubLink)}
-        ${generateQuestions(name, githubLink, email, contactConfirm, contactInput)}
+    ${generateTitle(projectTitle)}
+    ${badgeIdentifier(badges, github, projectTitle)}
+    ${generateTOC(creditsConfirm, featuresConfirm, testingConfirm)}
+    ${generateDescription(projectDescription)}
+    ${generateInstall(installInput)}
+    ${generateUsage(usageInput)}
+    ${generateCredits(creditsInput, creditsConfirm)}
+    ${generateLicensing(licenseType, name)}
+    ${generateFeatures(featureInput, featuresConfirm)}
+    ${generateTesting(testingInput, testingConfirm)}
+    ${generateContribute(githubLink)}
+    ${generateQuestions(name, github, githubLink, email, contactConfirm, contactInput)}
     `
 };
 
+//Generate each section based on user input for desired sections.
 function generateTitle(title){
-    return `#${title}
-    ---
+    return `
+# ${title}
+---
     `;  
 };
 
@@ -39,6 +38,8 @@ function badgeIdentifier(arr, github, projectTitle){
     let githubPR = '';
     let githubLCD = '';
     const badges = arr;
+    //Always include license badge
+    const licenseBadge = `![Licensing](https://img.shields.io/github/license/${github}/${projectTitle})`
 
     //Check for each available badge.  If it exists, include in section.  If not, leave an empty string.
     if (badges.includes("GitHub Language Count")){
@@ -74,81 +75,85 @@ function badgeIdentifier(arr, github, projectTitle){
     }
 
 return`
-${githubLC} ${githubTL} ${githubIC} ${githubCI} ${githubPR} ${githubLCD}
+${licenseBadge}   ${githubLC}   ${githubTL}   ${githubIC}   ${githubCI}   ${githubPR}   ${githubLCD}
 ---
 
 `
 };
 
-function generateTOC(arr, creditsConfirm, featuresConfirm, testingConfirm){
-    console.log('TOC DATA', arr)
+function generateTOC(creditsConfirm, featuresConfirm, testingConfirm){
+    console.log(creditsConfirm);
+    console.log(featuresConfirm);
+    console.log(testingConfirm);
+
     if(creditsConfirm){
-        var creditsLink = '[Credits](## Credits)'
+        var creditsLink = '[Credits](#credits)'
     } else{
         creditsLink = ''
     };
 
     if(featuresConfirm){
-        var featuresLink = '[Features](## Features)'
+        var featuresLink = '[Features](#features)'
     } else {
         featuresLink = ''
     };
 
     if(testingConfirm){
-        var testingLink = '[Testing](## Testing)'
+        var testingLink = '[Testing](#testing)'
     } else {
         testingLink = ''
     };
 
     return`
-    #Table Of Contents
-    ---
-    [Installation](## Installation)
-    [Usage] (## Usage)
-    ${creditsLink}
-    [Licensing](## Licensing)
-    ${featuresLink}
-    ${testingLink}
-    $[Questions and Comments](## Questions)
-    `   
+## Table Of Contents
+---
+* [Installation](#installation)
+* [Usage](#usage)
+* ${creditsLink}
+* [Licensing](#licensing)
+* ${featuresLink}
+* ${testingLink}
+* [Contribute To This Project](#contribute)
+* [Questions and Contact Info](#questions-and-contact)
+`   
 }
 
 function generateDescription(description){
     return `
-    ## Description
-    ---
-    ${description}
+## Description
+---
+${description}
     
-    `
+`
 };
 
 function generateInstall(installation){
     return `
-    ## Installation Instructions
-    ---
-    ${installation}
+## Installation
+---
+${installation}
 
-    `
+`
 };
 
 function generateUsage(usage){
     return `
-    ## How To Use
-    ---
-    ${usage}
+## Usage
+---
+${usage}
 
-    `
+`
 };
 
 function generateCredits(credits, creditsConfirm){
     if(creditsConfirm){
          return `
-    ## Credits
-    ---
-    Thank you to:
-    ${credits}
+## Credits
+---
+Thank you to:
+${credits}
 
-    `   
+`   
     } else {
         return ''
     };
@@ -159,7 +164,9 @@ function generateLicensing(licenseType, name){
     let licenseText = ''
     if(licenseType === 'MIT'){
         licenseText = 
-    `Copyright ${new Date().getFullYear()} ${name} Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  
+    `Copyright ${new Date().getFullYear()} ${name} 
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:  
         
     The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. 
         
@@ -210,20 +217,20 @@ function generateLicensing(licenseType, name){
         For more information, please refer to [Unlicense.org](https://unlicense.org)`
     }
     return `
-    ## Licensing
-    ---
-    ${licenseText}
+## Licensing
+---
+${licenseText}
 
-    `;
+`;
 };
 
 function generateFeatures(features, featuresConfirm){
     if(featuresConfirm){
     return `
-    ## Features
-    ---
-    ${features}
-    `
+## Features
+---
+${features}
+`
     } else {
         return ''
     }
@@ -232,11 +239,11 @@ function generateFeatures(features, featuresConfirm){
 function generateTesting(testing, testingConfirm){
     if(testingConfirm){
     return `
-    ## Testing
-    ---
-    ${testing}
+## Testing
+---
+${testing}
 
-    `
+`
     } else {
         return ''
     }
@@ -244,30 +251,31 @@ function generateTesting(testing, testingConfirm){
 
 function generateContribute(contribute){
     return `
-    ## Contribute To This Project
-    ---
-    Want to contribute to this project?  Please make a pull request at ${contribute}
+## Contribute
+---
+Want to contribute to this project?  Please make a pull request at ${contribute}
 
-    `
+`
 };
 
-function generateQuestions(name, githubLink, email, contactConfirm, contactInput){
+function generateQuestions(name, github, githubLink, email, contactConfirm, contactInput){
     if(contactConfirm){
         return `
-        ## Questions And Contact Information
-        ---
-        ${contactInput}
-        ${name}
-        GitHub: (${githubLink})
-        Email: ${email}
-        `
+## Questions And Contact
+---
+${contactInput}
+
+* Author: [${name}](www.github.com/${github})
+* GitHub: ${githubLink}
+* Email: ${email}
+`
     } else {
     return `
-    ## Questions And Contact Information
-    ---
-    ${name}
-    GitHub: (${githubLink})
-    Email: ${email}
+#Questions And Contact
+---
+Author: [${name}](www.github.com/${github})
+GitHub: (${githubLink})
+Email: ${email}
     `
     }
 };
