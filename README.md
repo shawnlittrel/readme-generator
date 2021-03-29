@@ -51,7 +51,7 @@ Sample Output
 ---
 Walkthrough of App Process
 
-![](./Develop/assets/images/app-demo.GIF)
+![App Walkthrough](./Develop/assets/images/app-demo.gif)
 
 
 
