@@ -40,11 +40,11 @@ Start the app with 'node index' and then follow the prompts.  The file will be g
 ### Screenshots
 ---
 
-![Screenshot](./assets/images/sample-prompt.JPG)
+![Screenshot](./develop/assets/images/sample-prompt.JPG)
 
 ---
 
-![Screenshot](./assets/images/sample-output.JPG)
+![Screenshot](./develop/assets/images/sample-output.JPG)
 
 ---
 
