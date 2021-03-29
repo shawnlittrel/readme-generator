@@ -1,35 +1,7 @@
-// TODO: Include packages needed for this application
-//Which packages are needed?  Inquirer, fs, other modules written
+//require packages
 const inquirer = require('inquirer');
 const fs = require('fs');
 const template = require('./page-template.js');
-
-const mockData =   {
-name: 'Shawn Littrel',
-github: 'shawnlittrle',
-email: 'shawnlittrel@gmail.com',
-data: [
-  {
-    projectTitle: 'Readme Generator',
-    projectDescription: 'make readmes',
-    confirmGit: true,
-    githubLink: 'shawnlittrel.github.com/readme-generator',
-    installInput: 'npm install inquirer, node index',
-    usageInput: 'uriqpweklsfjdkfl;asfd;',
-    creditsConfirm: true,
-    creditsInput: 'sources here',
-    licenseCheckbox: 'MIT',
-    badgeConfirm: true,
-    badgeCheckbox: [Array],
-    featuresConfirm: true,
-    featureInput: 'cool stuff',
-    testingConfirm: true,
-    testingInput: 'type in things until it breaks',
-    contactConfirm: true,
-    contactInput: 'Mail'
-  }
-]
-}
 
 // Ask questions about user
 const userQuestions = () =>{
@@ -259,6 +231,37 @@ const projectQuestions = projectData =>{
     })
 };
 
+const screenshotQuestions = projectData =>{
+    if(!projectData.screenshots){
+        projectData.screenshots = [];
+    };
+
+    return inquirer.prompt([
+        {
+            type: 'confirm',
+            name: 'screenshotConfirm',
+            message: 'Do you want to add screenshots or videos of this application?',
+            default: true
+        },
+        {
+            type: 'input',
+            name: 'screenshotInput',
+            message: 'Please input up to three relative file paths of your media, separated by commas.',
+            when: ({ screenshotConfirm }) => {
+                if(screenshotConfirm){
+                    return true
+                } else {
+                    return false;
+                }
+            }
+        }
+    ])
+    .then(screenshotData => {
+        projectData.screenshots.push(screenshotData);
+            return projectData;
+        })
+};
+
 const appendFile = fileContent => {
     return new Promise((resolve, reject) => {
         fs.writeFile('./NEWREADME.md', fileContent, err =>{
@@ -278,15 +281,8 @@ const appendFile = fileContent => {
     });
 };
 
-// template.generateReadMe(mockData)
-//         .then(markdownText =>{
-//             return appendFile(markdownText)
-//         })
-//         .catch(err =>{
-//             console.log(err);
-//         })
-
 userQuestions().then(projectQuestions)
+                .then(screenshotQuestions)
                 .then(projectData => {
                    return template.generateReadMe(projectData);
                 })
@@ -296,27 +292,4 @@ userQuestions().then(projectQuestions)
                 .catch(err =>{
                     console.log(err);
                 });
-//which sections are needed in a readme?
-//Project title - Title
-//Description of project - Description
-//Maybe table of contents - Table of Contents
-//Maybe installation steps - Installation
-//How to use app - Usage
-//Maybe credits - Credits
-//License information - Licensing
-//^^List of options
-//Maybe badges - Badges
-//^^Add to top of page
-//Maybe features - Features
-//Maybe testing information - Testing
-//Where to ask questions - Questions/Comments
-//^^Need Github username and an email address
 
-// TODO: Create a function to write README file
-//function writeToFile(fileName, data) {}
-
-// TODO: Create a function to initialize app
-//function init() {}
-
-// Function call to initialize app
-//init();

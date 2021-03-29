@@ -4,7 +4,7 @@ function generateReadMe(arr){
     const { projectTitle, projectDescription, githubLink, installInput, usageInput, creditsConfirm, creditsInput,featuresConfirm, featureInput, testingConfirm, testingInput, contactConfirm, contactInput } = arr.data[0];
     const badges = arr.data[0].badgeCheckbox;
     const licenseType = arr.data[0].licenseCheckbox;
-
+    const [ screenshotA, screenshotB, screenshotC ] = arr.screenshots[0].screenshotInput.split(', ')
 
     return `
     ${generateTitle(projectTitle)}
@@ -12,7 +12,7 @@ function generateReadMe(arr){
     ${generateTOC(creditsConfirm, featuresConfirm, testingConfirm)}
     ${generateDescription(projectDescription)}
     ${generateInstall(installInput)}
-    ${generateUsage(usageInput)}
+    ${generateUsage(usageInput, screenshotA, screenshotB, screenshotC)}
     ${generateCredits(creditsInput, creditsConfirm)}
     ${generateLicensing(licenseType, name)}
     ${generateFeatures(featureInput, featuresConfirm)}
@@ -82,10 +82,6 @@ ${licenseBadge}   ${githubLC}   ${githubTL}   ${githubIC}   ${githubCI}   ${gith
 };
 
 function generateTOC(creditsConfirm, featuresConfirm, testingConfirm){
-    console.log(creditsConfirm);
-    console.log(featuresConfirm);
-    console.log(testingConfirm);
-
     if(creditsConfirm){
         var creditsLink = '[Credits](#credits)'
     } else{
@@ -136,11 +132,46 @@ ${installation}
 `
 };
 
-function generateUsage(usage){
+function generateUsage(usage, screenshotA, screenshotB, screenshotC){
+    let screenshotAPath = '';
+    let screenshotBPath = '';
+    let screenshotCPath = '';
+
+    if(!screenshotA){
+        screenshotAPath = ''
+    } else {
+        screenshotAPath = `![Screenshot](${screenshotA})`
+    }
+
+    if(!screenshotB){
+        screenshotBPath = ''
+    } else {
+        screenshotBPath = `![Screenshot](${screenshotB})`
+    }
+
+    if(!screenshotC){
+        screenshotCPath = ''
+    } else{
+        screenshotCPath = `![Screenshot](${screenshotC})`
+    }
+
     return `
 ## Usage
 ---
 ${usage}
+
+### Screenshots
+---
+
+${screenshotAPath}
+
+---
+
+${screenshotBPath}
+
+---
+
+${screenshotCPath}
 
 `
 };
@@ -280,6 +311,7 @@ Email: ${email}
     }
 };
 
+//export main function to index.js
 module.exports = {
     generateReadMe
 };
