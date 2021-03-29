@@ -231,6 +231,7 @@ const projectQuestions = projectData =>{
     })
 };
 
+//prompt user for screenshot data
 const screenshotQuestions = projectData =>{
     if(!projectData.screenshots){
         projectData.screenshots = [];
@@ -262,6 +263,7 @@ const screenshotQuestions = projectData =>{
         })
 };
 
+//write file to NEWREADME.md
 const appendFile = fileContent => {
     return new Promise((resolve, reject) => {
         fs.writeFile('./NEWREADME.md', fileContent, err =>{
@@ -281,6 +283,7 @@ const appendFile = fileContent => {
     });
 };
 
+//function flow
 userQuestions().then(projectQuestions)
                 .then(screenshotQuestions)
                 .then(projectData => {

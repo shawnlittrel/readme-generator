@@ -23,19 +23,19 @@
     
 ## Description
 ---
-Generate readmes from a command line interface.
+Make readmes via a command line interface
     
 
     
 ## Installation
 ---
-Clone the repository from GitHub, then 'npm install' from the command line.
+Clone the repository, then "npm install" from the command line.
 
 
     
 ## Usage
 ---
-Start the app with 'node index' and then follow the prompts.  The file will be generated as NEWREADME.md and can be manipulated as needed from there.
+'node index' from the command line, then follow the prompts.  New file will be generated as NEWREADME.md, then can be manipulated as needed from there.
 
 ### Screenshots
 ---
@@ -44,7 +44,7 @@ Start the app with 'node index' and then follow the prompts.  The file will be g
 
 ---
 
-![Screenshot](./assets/images/sample-output.JPG)
+
 
 ---
 
@@ -55,7 +55,7 @@ Start the app with 'node index' and then follow the prompts.  The file will be g
 ## Credits
 ---
 Thank you to:
-Everyone in my bootcamp that answered my questions.
+Everyone who helped me along the way.
 
 
     
@@ -73,12 +73,12 @@ Copyright 2021 Shawn Littrel
     
 ## Features
 ---
-Lots of fun colors and text in the command line.
+Lots of fun colors and text in a command line format!
 
     
 ## Testing
 ---
-I filled out the prompts until the code broke.  When it stopped breaking, I knew the app was complete.
+Lots of typing and following prompts.
 
 
     
@@ -88,10 +88,12 @@ Want to contribute to this project?  Please make a pull request at www.github.co
 
 
     
-#Questions And Contact
+## Questions And Contact
 ---
-Author: [Shawn Littrel](www.github.com/shawnlittrel)
-GitHub: (www.github.com/shawnlittrel/readme-generator)
-Email: shawnlittrel@gmail.com
-    
+Don't contact me unless absolutely necessary.
+
+* Author: [Shawn Littrel](www.github.com/shawnlittrel)
+* GitHub: www.github.com/shawnlittrel/readme-generator
+* Email: shawnlittrel@gmail.com
+
     

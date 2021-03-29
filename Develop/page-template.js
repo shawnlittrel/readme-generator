@@ -132,6 +132,7 @@ ${installation}
 `
 };
 
+//set each path to an empty string, then repopulate as needed
 function generateUsage(usage, screenshotA, screenshotB, screenshotC){
     let screenshotAPath = '';
     let screenshotBPath = '';
@@ -302,11 +303,11 @@ ${contactInput}
 `
     } else {
     return `
-#Questions And Contact
+## Questions And Contact
 ---
-Author: [${name}](www.github.com/${github})
-GitHub: (${githubLink})
-Email: ${email}
+* Author: [${name}](www.github.com/${github})
+* GitHub: (${githubLink})
+* Email: ${email}
     `
     }
 };
