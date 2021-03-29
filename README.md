@@ -39,14 +39,19 @@ Start the app with 'node index' and then follow the prompts.  The file will be g
 
 ### Screenshots
 ---
+Sample Prompt
 
 ![Screenshot](./Develop/assets/images/sample-prompt.JPG)
 
 ---
+Sample Output
 
 ![Screenshot](./Develop/assets/images/sample-output.JPG)
 
 ---
+Walkthrough of App Process
+
+![](./Develop/assets/images/app-demo.mp4)
 
 
 
