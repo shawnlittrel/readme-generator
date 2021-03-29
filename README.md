@@ -51,7 +51,9 @@ Sample Output
 ---
 Walkthrough of App Process
 
-![](./Develop/assets/images/app-demo.mp4)
+<video width="640" height="480" controls>
+  <source src="./Develop/assets/images/app-demo.mp4" type="video/mp4">
+</video>
 
 
 
