@@ -1,6 +1,6 @@
 
     
-# readme-generator
+# README GENERATOR
 ---
     
     
@@ -52,6 +52,8 @@ Sample Output
 Walkthrough of App Process
 
 ![App Walkthrough](./Develop/assets/images/app-demo.gif)
+
+--High res version available [here.](https://drive.google.com/file/d/1j_WQBSez9n_h57TcDI6zKW-1ins47Iao/view?usp=sharing)
 
 
 
